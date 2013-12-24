@@ -14,7 +14,10 @@ numpy_version_requirement = dec.skipif(
     LooseVersion(np.version.version) < LooseVersion('1.6')
     and sys.version_info[0] >= 3,
     "Bug in Numpy < 1.6 on Python 3")
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/maintenance/0.13.x
 
 def test_eval_chebyt():
     n = np.arange(0, 10000, 7)

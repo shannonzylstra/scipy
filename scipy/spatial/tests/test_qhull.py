@@ -66,7 +66,11 @@ pathological_data_2 = np.array([
 ])
 
 bug_2850_chunks = [np.random.rand(10, 2),
+<<<<<<< HEAD
                    np.array([[0,0], [0,1], [1,0], [1,1]])  # add corners
+=======
+                   np.array([[0,0], [0,1], [1,0], [1,1]]) # add corners
+>>>>>>> upstream/maintenance/0.13.x
                    ]
 
 # same with some additional chunks
@@ -92,7 +96,10 @@ INCREMENTAL_DATASETS = {
     'bug-2850-2': (bug_2850_chunks_2, None),
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/maintenance/0.13.x
 def _add_inc_data(name, chunksize):
     """
     Generate incremental datasets from basic data sets

@@ -18,11 +18,16 @@ def _uses_veclib(info):
 
     return False
 
+def uses_accelerate(info):
+    return _uses_veclib(info)
 
+<<<<<<< HEAD
 def uses_accelerate(info):
     return _uses_veclib(info)
 
 
+=======
+>>>>>>> upstream/maintenance/0.13.x
 def uses_mkl(info):
     r_mkl = re.compile("mkl_core")
 

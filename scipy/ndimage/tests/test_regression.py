@@ -35,7 +35,10 @@ def test_ticket_742():
         # shouldn't crash
         SE(a)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/maintenance/0.13.x
 def test_gh_issue_3025():
     """Github issue #3025 - improper merging of labels"""
     d = np.zeros((60,320))

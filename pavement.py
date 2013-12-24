@@ -112,11 +112,19 @@ finally:
 #-----------------------------------
 
 # Source of the release notes
+<<<<<<< HEAD
 RELEASE = 'doc/release/0.14.0-notes.rst'
 
 # Start/end of the log (from git)
 LOG_START = 'v0.13.0'
 LOG_END = 'master'
+=======
+RELEASE = 'doc/release/0.13.3-notes.rst'
+
+# Start/end of the log (from git)
+LOG_START = 'v0.13.2'
+LOG_END = 'v0.13.3'
+>>>>>>> upstream/maintenance/0.13.x
 
 
 #-------------------------------------------------------
@@ -487,6 +495,7 @@ def bdist_mpkg():
 def _build_mpkg(pyver):
     numver = parse_numpy_version(MPKG_PYTHON[pyver])
     numverstr = ".".join(["%i" % i for i in numver])
+<<<<<<< HEAD
     if pyver < "3.3":
         # Numpy < 1.7 doesn't support Python 3.3
         if not numver == (1, 5, 1):
@@ -495,6 +504,12 @@ def _build_mpkg(pyver):
     else:
         raise ValueError("Scipy 0.14.x should be built against numpy "
                          "1.7.1, (detected %s) for Python >= 3.3" % numverstr)
+=======
+    if pyver[0] == '2' and (not numver == (1, 5, 1)):
+        raise ValueError("Scipy 0.13.x should be built against numpy 1.5.1, (detected %s)" % numverstr)
+    elif pyver[0] == '3' and (not numver == (1, 7, 1)):
+        raise ValueError("Scipy 0.13.x should be built against numpy 1.7.1, (detected %s)" % numverstr)
+>>>>>>> upstream/maintenance/0.13.x
 
     prepare_static_gfortran_runtime("build")
     # account for differences between Python 2.7.1 versions from python.org

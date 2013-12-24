@@ -4,6 +4,10 @@
 #
 from __future__ import division, print_function, absolute_import
 
+<<<<<<< HEAD
+=======
+import math
+>>>>>>> upstream/maintenance/0.13.x
 import sys
 import warnings
 
@@ -1388,10 +1392,20 @@ class rv_continuous(rv_generic):
         if sys.flags.optimize < 2:
             # Skip adding docstrings if interpreter is run with -OO
             if self.__doc__ is None:
+<<<<<<< HEAD
                 self._construct_default_doc(longname=longname,
                                             extradoc=extradoc)
             else:
                 self._construct_doc()
+=======
+                self._construct_default_doc(longname=longname, extradoc=extradoc)
+            else:
+                self._construct_doc()
+
+        ## This only works for old-style classes...
+        # self.__class__.__doc__ = self.__doc__
+
+>>>>>>> upstream/maintenance/0.13.x
 
     def _construct_default_doc(self, longname=None, extradoc=None):
         """Construct instance docstring from the default template."""
@@ -2574,11 +2588,16 @@ class beta_gen(rv_continuous):
             a = b * xbar / (1 - xbar)
 
             # Compute the MLE for `a` by solving _beta_mle_a.
+<<<<<<< HEAD
             theta, info, ier, mesg = optimize.fsolve(
                 _beta_mle_a, a,
                 args=(b, len(data), np.log(data).sum()),
                 full_output=True
             )
+=======
+            theta, info, ier, mesg = optimize.fsolve(_beta_mle_a, a,
+                args=(b, len(data), np.log(data).sum()), full_output=True)
+>>>>>>> upstream/maintenance/0.13.x
             if ier != 1:
                 raise FitSolverError(mesg=mesg)
             a = theta[0]
@@ -6019,6 +6038,7 @@ class vonmises_gen(rv_continuous):
     The probability density function for `vonmises` is::
 
         vonmises.pdf(x, kappa) = exp(kappa * cos(x)) / (2*pi*I[0](kappa))
+<<<<<<< HEAD
 
     for ``-pi <= x <= pi``, ``kappa > 0``.
 
@@ -6026,6 +6046,10 @@ class vonmises_gen(rv_continuous):
     --------
     vonmises_line : The same distribution, defined on a [-pi, pi] segment
                     of the real line.
+=======
+
+    for ``-pi <= x <= pi``, ``kappa > 0``.
+>>>>>>> upstream/maintenance/0.13.x
 
     %(example)s
 
@@ -6593,10 +6617,20 @@ class rv_discrete(rv_generic):
         if sys.flags.optimize < 2:
             # Skip adding docstrings if interpreter is run with -OO
             if self.__doc__ is None:
+<<<<<<< HEAD
                 self._construct_default_doc(longname=longname,
                                             extradoc=extradoc)
             else:
                 self._construct_doc()
+=======
+                self._construct_default_doc(longname=longname, extradoc=extradoc)
+            else:
+                self._construct_doc()
+
+            #discrete RV do not have the scale parameter, remove it
+            self.__doc__ = self.__doc__.replace('\n    scale : array_like, '
+                            'optional\n        scale parameter (default=1)', '')
+>>>>>>> upstream/maintenance/0.13.x
 
             #discrete RV do not have the scale parameter, remove it
             self.__doc__ = self.__doc__.replace(
@@ -7678,11 +7712,19 @@ class randint_gen(rv_discrete):
     The probability mass function for `randint` is::
 
         randint.pmf(k) = 1./(high - low)
+<<<<<<< HEAD
 
     for ``k = low, ..., high - 1``.
 
     `randint` takes ``low`` and ``high`` as shape parameters.
 
+=======
+
+    for ``k = low, ..., high - 1``.
+
+    `randint` takes ``low`` and ``high`` as shape parameters.
+
+>>>>>>> upstream/maintenance/0.13.x
     Note the difference to the numpy ``random_integers`` which
     returns integers on a *closed* interval ``[low, high]``.
 
@@ -7695,6 +7737,7 @@ class randint_gen(rv_discrete):
         return (high > low)
 
     def _pmf(self, k, low, high):
+<<<<<<< HEAD
         p = np.ones_like(k) / (high - low)
         return np.where((k >= low) & (k < high), p, 0.)
 
@@ -7705,6 +7748,18 @@ class randint_gen(rv_discrete):
     def _ppf(self, q, low, high):
         vals = ceil(q * (high - low) + low) - 1
         vals1 = (vals - 1).clip(low, high)
+=======
+        fact = 1.0 / (high - low)
+        return fact
+
+    def _cdf(self, x, low, high):
+        k = floor(x)
+        return (k-low + 1) * 1.0 / (high - low)
+
+    def _ppf(self, q, low, high):
+        vals = ceil(q*(high - low) + low) - 1
+        vals1 = (vals-1).clip(low, high)
+>>>>>>> upstream/maintenance/0.13.x
         temp = self._cdf(vals1, low, high)
         return where(temp >= q, vals1, vals)
 
@@ -7726,7 +7781,11 @@ class randint_gen(rv_discrete):
 
     def _entropy(self, low, high):
         return log(high - low)
+<<<<<<< HEAD
 randint = randint_gen(name='randint', longname='A discrete uniform '
+=======
+randint = randint_gen(name='randint',longname='A discrete uniform '
+>>>>>>> upstream/maintenance/0.13.x
                       '(random integer)')
 
 

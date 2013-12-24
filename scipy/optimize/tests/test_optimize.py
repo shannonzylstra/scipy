@@ -516,6 +516,7 @@ class TestOptimize(object):
                                 constraints={'type': 'ineq', 'fun': cons})
         assert_allclose(res.x, np.array([0., 2, 5, 8])/3, atol=1e-12)
 
+<<<<<<< HEAD
     def test_minimize_automethod(self):
         def f(x):
             return x**2
@@ -536,6 +537,8 @@ class TestOptimize(object):
         assert_allclose(sol_3.x, 5, atol=1e-8)
         assert_allclose(sol_4.x, 2, atol=1e-8)
 
+=======
+>>>>>>> upstream/maintenance/0.13.x
 
 class TestLBFGSBBounds(TestCase):
     """ Tests for L-BFGS-B with bounds """

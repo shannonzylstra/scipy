@@ -5,7 +5,10 @@ Release Notes
 .. toctree::
    :maxdepth: 1
 
+<<<<<<< HEAD
    release.0.14.0
+=======
+>>>>>>> upstream/maintenance/0.13.x
    release.0.13.2
    release.0.13.1
    release.0.13.0

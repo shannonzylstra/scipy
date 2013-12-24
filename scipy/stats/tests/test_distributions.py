@@ -23,6 +23,22 @@ from scipy.special import xlogy
 
 # python -OO strips docstrings
 DOCSTRINGS_STRIPPED = sys.flags.optimize > 1
+<<<<<<< HEAD
+=======
+
+
+def kolmogorov_check(diststr, args=(), N=20, significance=0.01):
+    qtest = stats.ksoneisf(significance, N)
+    cdf = eval('stats.'+diststr+'.cdf')
+    dist = eval('stats.'+diststr)
+    # Get random numbers
+    kwds = {'size':N}
+    vals = numpy.sort(dist.rvs(*args, **kwds))
+    cdfvals = cdf(vals, *args)
+    q = max(abs(cdfvals - np.arange(1.0, N+1)/N))
+    assert_(q < qtest, msg="Failed q=%f, bound=%f, alpha=%f" % (q, qtest, significance))
+    return
+>>>>>>> upstream/maintenance/0.13.x
 
 
 # generate test cases to test cdf and distribution consistency
@@ -1009,6 +1025,10 @@ class TestFitMethod(object):
         # Check that attempting to fix all the parameters raises a ValueError.
         assert_raises(ValueError, stats.beta.fit, y, f0=0, f1=1,
                                                      floc=2, fscale=3)
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/maintenance/0.13.x
 
 
 class TestFrozen(TestCase):

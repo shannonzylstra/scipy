@@ -499,6 +499,7 @@ def test_ppcc_max_bad_arg():
 
 class TestBoxcox_llf(TestCase):
 
+<<<<<<< HEAD
     def test_basic(self):
         np.random.seed(54321)
         x = stats.norm.rvs(size=10000, loc=10)
@@ -644,6 +645,8 @@ class TestBoxcoxNormplot(TestCase):
         assert_(stats.boxcox_normplot([], 0, 1).size == 0)
 
 
+=======
+>>>>>>> upstream/maintenance/0.13.x
 class TestCircFuncs(TestCase):
     def test_circfuncs(self):
         x = np.array([355,5,2,359,10,350])
@@ -693,6 +696,7 @@ class TestCircFuncs(TestCase):
         x = np.array([[355,5,2,359,10,350],
                       [351,7,4,352,9,349],
                   [357,9,8,358,4,356]])
+<<<<<<< HEAD
 
         V1 = stats.circvar(x, high=360)
         V2 = stats.circvar(x.ravel(), high=360)
@@ -729,6 +733,44 @@ class TestCircFuncs(TestCase):
         assert_allclose(stats.circvar(x, high=360), 42.51955609, rtol=1e-7)
         assert_allclose(stats.circstd(x, high=360), 6.520702116, rtol=1e-7)
 
+=======
+
+        V1 = stats.circvar(x, high=360)
+        V2 = stats.circvar(x.ravel(), high=360)
+        assert_allclose(V1, V2, rtol=1e-11)
+
+        V1 = stats.circvar(x, high=360, axis=1)
+        V2 = [stats.circvar(x[i], high=360) for i in range(x.shape[0])]
+        assert_allclose(V1, V2, rtol=1e-11)
+
+        V1 = stats.circvar(x, high=360, axis=0)
+        V2 = [stats.circvar(x[:,i], high=360) for i in range(x.shape[1])]
+        assert_allclose(V1, V2, rtol=1e-11)
+
+    def test_circstd_axis(self):
+        x = np.array([[355,5,2,359,10,350],
+                      [351,7,4,352,9,349],
+                      [357,9,8,358,4,356]])
+
+        S1 = stats.circstd(x, high=360)
+        S2 = stats.circstd(x.ravel(), high=360)
+        assert_allclose(S1, S2, rtol=1e-11)
+
+        S1 = stats.circstd(x, high=360, axis=1)
+        S2 = [stats.circstd(x[i], high=360) for i in range(x.shape[0])]
+        assert_allclose(S1, S2, rtol=1e-11)
+
+        S1 = stats.circstd(x, high=360, axis=0)
+        S2 = [stats.circstd(x[:,i], high=360) for i in range(x.shape[1])]
+        assert_allclose(S1, S2, rtol=1e-11)
+
+    def test_circfuncs_array_like(self):
+        x = [355,5,2,359,10,350]
+        assert_allclose(stats.circmean(x, high=360), 0.167690146, rtol=1e-7)
+        assert_allclose(stats.circvar(x, high=360), 42.51955609, rtol=1e-7)
+        assert_allclose(stats.circstd(x, high=360), 6.520702116, rtol=1e-7)
+
+>>>>>>> upstream/maintenance/0.13.x
     def test_empty(self):
         assert_(np.isnan(stats.circmean([])))
         assert_(np.isnan(stats.circstd([])))

@@ -1035,7 +1035,10 @@ class TestNdimage:
             assert_array_almost_equal(expected, output)
 
     def test_rank15(self):
+<<<<<<< HEAD
         "rank filter 15"
+=======
+>>>>>>> upstream/maintenance/0.13.x
         expected = [[2, 3, 1, 4, 1],
                 [5, 3, 7, 1, 1],
                 [5, 5, 3, 3, 3]]

@@ -49,8 +49,13 @@ Operating System :: MacOS
 """
 
 MAJOR               = 0
+<<<<<<< HEAD
 MINOR               = 14
 MICRO               = 0
+=======
+MINOR               = 13
+MICRO               = 3
+>>>>>>> upstream/maintenance/0.13.x
 ISRELEASED          = False
 VERSION             = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
